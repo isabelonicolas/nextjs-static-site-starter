@@ -17,7 +17,7 @@ export const scrollToElement = (element: HTMLElement | null) => {
 
 	if (!element) return
 
-	element?.focus({ preventScroll: true })
+	element.focus({ preventScroll: true })
 
 	element.scrollIntoView({
 		behavior: "smooth",
