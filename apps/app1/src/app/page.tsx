@@ -19,7 +19,7 @@ export default function Page() {
 						</p>
 					</div>
 					<div className={scss.cta_wrapper}>
-						<Button as="link" href="#get-started" color="primary">
+						<Button as="nextlink" href="#get-started" color="primary">
 							Get Started
 						</Button>
 					</div>
