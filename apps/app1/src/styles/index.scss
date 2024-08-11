@@ -1,0 +1,41 @@
+@use "./variables" as var;
+
+// Normalize css.
+@use "./normalize";
+
+// Global.
+:root {
+	--app-height: 100vh;
+
+	@supports (height: 100dvh) {
+		--app-height: 100vh;
+	}
+
+	font-size: var.$root-font-size;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: var.$color-text-body;
+	font-family: var.$font-inter;
+	font-size: 100%;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

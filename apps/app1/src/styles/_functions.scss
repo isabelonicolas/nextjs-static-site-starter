@@ -1,0 +1,9 @@
+@use "./variables" as var;
+
+@function stripUnit($value) {
+	@return $value / ($value * 0 + 1);
+}
+
+@function rem($pixels) {
+	@return #{stripUnit($pixels) / stripUnit(var.$root-font-size)}rem;
+}

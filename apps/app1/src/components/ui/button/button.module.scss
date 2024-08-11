@@ -1,0 +1,55 @@
+@use "@/styles/variables" as var;
+@use "@/styles/functions" as func;
+@use "@/styles/mixins" as mix;
+
+/** Base. **/
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: func.rem(8);
+	padding: func.rem(8) func.rem(12);
+	cursor: pointer;
+	border: func.rem(1) solid transparent;
+	border-radius: func.rem(4);
+	text-decoration: none;
+}
+
+.btn_icon_prefix {
+	display: flex;
+	flex: none;
+}
+
+.btn_icon_suffix {
+	display: flex;
+	flex: none;
+}
+
+.btn_label {
+	flex: 0 1 auto;
+}
+
+.btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/** Variants. **/
+// Primary.
+.btn[data-state-color="primary"] {
+	background-color: var.$color-primary;
+	color: white;
+}
+
+// Dark.
+.btn[data-state-color="dark"] {
+	background-color: black;
+	color: white;
+}
+
+// Outline dark.
+.btn[data-state-color="outline-dark"] {
+	border-color: black;
+	background-color: transparent;
+	color: black;
+}
