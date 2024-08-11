@@ -1,0 +1,39 @@
+@use "@/styles/variables" as var;
+@use "@/styles/functions" as func;
+@use "@/styles/mixins" as mix;
+
+.wrapper {
+	padding-top: func.rem(60);
+	padding-bottom: func.rem(60);
+}
+
+.container {
+	@include mix.container;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: func.rem(16);
+	align-items: flex-start;
+}
+
+.headline {
+	margin: 0;
+	font-size: func.rem(36px);
+}
+
+.subheadline {
+	margin: 0;
+	font-size: func.rem(20);
+}
+
+.body {
+	:first-child {
+		margin-top: 0;
+	}
+
+	:last-child {
+		margin-bottom: 0;
+	}
+}
