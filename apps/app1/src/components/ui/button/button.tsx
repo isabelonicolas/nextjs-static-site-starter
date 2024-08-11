@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef } from "react"
+import { ComponentPropsWithoutRef, forwardRef } from "react"
 import Link from "next/link"
 import clsx from "clsx"
 
@@ -14,18 +14,18 @@ type BaseButtonType = {
 }
 
 type ButtonAsAnchorType = BaseButtonType &
-	React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+	ComponentPropsWithoutRef<"a"> & {
 		as: "anchor"
 	}
 
 type ButtonAsButtonType = BaseButtonType &
-	React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	ComponentPropsWithoutRef<"button"> & {
 		as: "button"
 	}
 
 type ButtonAsLinkType = BaseButtonType &
-	React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-		as: "link"
+	ComponentPropsWithoutRef<"a"> & {
+		as: "nextlink"
 	}
 
 export type ButtonProps = ButtonAsAnchorType | ButtonAsButtonType | ButtonAsLinkType
@@ -49,7 +49,7 @@ export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 	}
 
 	if (as === "anchor") {
-		const anchorProps = props as React.AnchorHTMLAttributes<HTMLAnchorElement>
+		const anchorProps = props as ComponentPropsWithoutRef<"a">
 		const anchorRef = ref as React.Ref<HTMLAnchorElement>
 
 		return (
@@ -60,14 +60,14 @@ export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 	}
 
 	if (as === "button") {
-		const { type, ...buttonProps } = props as React.ButtonHTMLAttributes<HTMLButtonElement>
+		const { type = "button", ...buttonProps } = props as ComponentPropsWithoutRef<"button">
 		const buttonRef = ref as React.Ref<HTMLButtonElement>
 
 		return (
 			<button
 				ref={buttonRef}
 				className={btnClassName}
-				type={type || "button"}
+				type={type}
 				data-state-color={color}
 				{...buttonProps}
 			>
@@ -76,8 +76,8 @@ export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 		)
 	}
 
-	if (as === "link") {
-		const linkProps = props as React.AnchorHTMLAttributes<HTMLAnchorElement>
+	if (as === "nextlink") {
+		const linkProps = props as ComponentPropsWithoutRef<"a">
 		const linkRef = ref as React.Ref<HTMLAnchorElement>
 
 		return (
