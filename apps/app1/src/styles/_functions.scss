@@ -1,0 +1,23 @@
+@use "./variables" as var;
+
+/**
+ * @function stripUnit
+ * @description Removes the unit from a value and returns the numeric value.
+ * 
+ * @param {Number|Length} $value - The value from which the unit will be stripped.
+ * @return {Number} The numeric value without any unit.
+ */
+@function stripUnit($value) {
+	@return $value / ($value * 0 + 1);
+}
+
+/**
+ * @function rem
+ * @description Converts a pixel value to `rem` units based on the root font size.
+ * 
+ * @param {Length} $pixels - The pixel value to be converted.
+ * @return {String} The corresponding `rem` value.
+ */
+@function rem($pixels) {
+	@return #{stripUnit($pixels) / stripUnit(var.$root-font-size)}rem;
+}

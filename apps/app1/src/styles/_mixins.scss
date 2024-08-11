@@ -1,0 +1,27 @@
+@use "./variables" as var;
+@use "./functions" as func;
+
+/**
+ * Breakpoints (Screen).
+ */
+@mixin screen($breakpoint) {
+	@each $breakpoints, $size in var.$screen {
+		@if $breakpoint == $breakpoints {
+			@media screen and (min-width: $size) {
+				@content;
+			}
+		}
+	}
+}
+
+/**
+ * Container.
+ */
+@mixin container {
+	width: 100%;
+	max-width: func.rem(var.$container-width + (var.$container-gutter * 2));
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: func.rem(var.$container-gutter);
+	padding-left: func.rem(var.$container-gutter);
+}

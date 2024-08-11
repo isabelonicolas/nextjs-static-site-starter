@@ -1,0 +1,37 @@
+/**
+ * Root.
+ */
+$root-font-size: 16px;
+
+/**
+ * Fonts.
+ */
+$font-inter: var(--font-inter);
+
+/**
+ * Colors.
+ */
+// semantics.
+$color-primary: #238000;
+$color-text-body: #1c1b1f;
+
+/**
+ * Spacing and Container.
+ */
+$container-gutter: 20px;
+$container-width: 1180px;
+
+/**
+ * Screen Sizes.
+ */
+$screen: (
+	min: 320px,
+	xs: 375px,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px,
+	xxxl: 1600px,
+	fhd: 1920px,
+);
