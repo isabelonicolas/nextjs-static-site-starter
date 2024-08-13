@@ -5,9 +5,9 @@
     "apps/*"
   ],
   "scripts": {
-    "build:app1:local": "cd apps/app1 && npm run build:local",
-    "build:app1:staging": "cd apps/app1 && npm run build:staging",
-    "build:app1:production": "cd apps/app1 && npm run build:production",
-    "dev:app1": "cd apps/app1 && npm run dev"
+    "build:app1:local": "npm run build:local --workspace=app1",
+    "build:app1:staging": "npm run build:staging --workspace=app1",
+    "build:app1:production": "npm run build:production --workspace=app1",
+    "dev:app1": "npm run dev --workspace=app1"
   }
 }
