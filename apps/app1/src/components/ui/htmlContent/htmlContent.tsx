@@ -21,8 +21,8 @@ export const HtmlContent = forwardRef<HTMLDivElement, HtmlContentProps>(function
 		<div
 			ref={forwardedRef}
 			className={clsx(scss.wrapper, className)}
-			{...props}
 			dangerouslySetInnerHTML={{ __html: text }}
+			{...props}
 		/>
 	)
 })
