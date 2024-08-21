@@ -1,0 +1,26 @@
+.accordion {
+	display: flex;
+	flex-direction: column;
+}
+
+.accordion_item {
+	display: block;
+}
+
+.accordion_trigger {
+	display: block;
+}
+
+.accordion_header {
+	display: block;
+}
+
+.accordion_body {
+	display: none;
+}
+
+.accordion_item[data-state-expanded="true"] {
+	.accordion_body {
+		display: block;
+	}
+}

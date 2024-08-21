@@ -1,0 +1,53 @@
+@use "@/styles/variables" as var;
+@use "@/styles/functions" as func;
+@use "@/styles/mixins" as mix;
+
+.accordion {
+	display: flex;
+	flex-direction: column;
+	gap: func.rem(12);
+}
+
+.accordion_item {
+	border: func.rem(1) solid black;
+	border-radius: func.rem(4);
+}
+
+.accordion_trigger {
+	display: flex;
+	justify-content: space-between;
+	gap: func.rem(12);
+	padding: func.rem(12);
+	cursor: pointer;
+}
+
+.accordion_header {
+	background-color: black;
+	color: white;
+	font-weight: 700;
+	line-height: 125%;
+}
+
+.accordion_body {
+	padding: func.rem(12);
+}
+
+.accordion_chevron {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	> svg {
+		font-size: 0.75em;
+		height: 1.66em;
+		transition: transform 250ms;
+	}
+}
+
+.accordion_item[data-state-expanded="true"] {
+	.accordion_chevron {
+		> svg {
+			transform: rotate(180deg);
+		}
+	}
+}
