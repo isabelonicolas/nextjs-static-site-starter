@@ -34,7 +34,7 @@ type ButtonRefProps = HTMLAnchorElement | HTMLButtonElement
 
 export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 	{ as, children, className, iconPrefix, iconSuffix, color, ...props },
-	ref
+	forwardedRef
 ) {
 	const btnClassName = clsx(scss.btn, className)
 
@@ -50,7 +50,7 @@ export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 
 	if (as === "anchor") {
 		const anchorProps = props as ComponentPropsWithoutRef<"a">
-		const anchorRef = ref as React.Ref<HTMLAnchorElement>
+		const anchorRef = forwardedRef as React.Ref<HTMLAnchorElement>
 
 		return (
 			<a ref={anchorRef} className={btnClassName} data-state-color={color} {...anchorProps}>
@@ -61,7 +61,7 @@ export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 
 	if (as === "button") {
 		const { type = "button", ...buttonProps } = props as ComponentPropsWithoutRef<"button">
-		const buttonRef = ref as React.Ref<HTMLButtonElement>
+		const buttonRef = forwardedRef as React.Ref<HTMLButtonElement>
 
 		return (
 			<button
@@ -78,7 +78,7 @@ export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 
 	if (as === "nextlink") {
 		const linkProps = props as ComponentPropsWithoutRef<"a">
-		const linkRef = ref as React.Ref<HTMLAnchorElement>
+		const linkRef = forwardedRef as React.Ref<HTMLAnchorElement>
 
 		return (
 			<Link href={linkProps.href || ""} passHref legacyBehavior>

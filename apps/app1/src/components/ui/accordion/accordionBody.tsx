@@ -14,13 +14,13 @@ interface AccordionBodyProps extends React.ComponentPropsWithoutRef<"div"> {
 
 export const AccordionBody = forwardRef<HTMLDivElement, AccordionBodyProps>(function AccordionBody(
 	{ children, className, id, "aria-labelledby": ariaLabelledBy, role = "region", ...props },
-	ref
+	forwardedRef
 ) {
 	const { itemId } = useContext(AccordionItemContext)
 
 	return (
 		<div
-			ref={ref}
+			ref={forwardedRef}
 			id={id || `accordion-${itemId}-body`}
 			className={clsx(scss.accordion_body, className)}
 			role={role}

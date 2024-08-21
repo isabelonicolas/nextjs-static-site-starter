@@ -28,13 +28,13 @@ export const AccordionTrigger = forwardRef<HTMLDivElement, AccordionTriggerProps
 			onTrigger,
 			...props
 		},
-		ref
+		forwardedRef
 	) {
 		const { isExpanded, itemId, toggleItem } = useContext(AccordionItemContext)
 
 		return (
 			<div
-				ref={ref}
+				ref={forwardedRef}
 				id={id || `accordion-${itemId}`}
 				className={clsx(scss.accordion_trigger, className)}
 				role={role || "button"}

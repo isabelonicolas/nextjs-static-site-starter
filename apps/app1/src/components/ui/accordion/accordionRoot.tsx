@@ -23,7 +23,7 @@ interface AccordionRootProps extends React.ComponentPropsWithoutRef<"div"> {
 
 export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(function AccordionRoot(
 	{ children, className, type = "single", ...props },
-	ref
+	forwardedRef
 ) {
 	const [itemsExpanded, setItemsExpanded] = useState<string[]>([])
 
@@ -44,7 +44,12 @@ export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(func
 
 	return (
 		<AccordionRootContext.Provider value={{ itemsExpanded, toggle }}>
-			<div ref={ref} className={clsx(scss.accordion, className)} data-state-type={type} {...props}>
+			<div
+				ref={forwardedRef}
+				className={clsx(scss.accordion, className)}
+				data-state-type={type}
+				{...props}
+			>
 				{children}
 			</div>
 		</AccordionRootContext.Provider>

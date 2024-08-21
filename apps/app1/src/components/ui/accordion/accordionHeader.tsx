@@ -11,9 +11,9 @@ interface AccordionHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
 }
 
 export const AccordionHeader = forwardRef<HTMLDivElement, AccordionHeaderProps>(
-	function AccordionHeader({ children, className, ...props }, ref) {
+	function AccordionHeader({ children, className, ...props }, forwardedRef) {
 		return (
-			<div ref={ref} className={clsx(scss.accordion_header, className)} {...props}>
+			<div ref={forwardedRef} className={clsx(scss.accordion_header, className)} {...props}>
 				{children}
 			</div>
 		)

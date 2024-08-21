@@ -27,7 +27,7 @@ interface AccordionItemProps extends React.ComponentPropsWithoutRef<"div"> {
 
 export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(function AccordionItem(
 	{ children, className, value, ...props },
-	ref
+	forwardedRef
 ) {
 	const itemId = useId()
 	const { itemsExpanded, toggle } = useContext(AccordionRootContext)
@@ -40,7 +40,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(func
 	return (
 		<AccordionItemContext.Provider value={{ itemId, isExpanded, toggleItem }}>
 			<div
-				ref={ref}
+				ref={forwardedRef}
 				className={clsx(scss.accordion_item, className)}
 				data-state-expanded={isExpanded}
 				data-state-value={value}
