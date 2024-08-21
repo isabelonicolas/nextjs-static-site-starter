@@ -1,6 +1,7 @@
 import { Accordion } from "@/components/ui/accordion/accordion"
 
 import scss from "./BasicAccordion.module.scss"
+import { HtmlContent } from "../ui/htmlContent/htmlContent"
 
 interface BasicAccordionProps {
 	items: {
@@ -24,7 +25,10 @@ export function BasicAccordion({ items }: BasicAccordionProps) {
 				>
 					<Accordion.Header className={scss.accordion_header}>
 						<Accordion.Trigger className={scss.accordion_trigger}>
-							<span>Lorem ipsum dolor?</span>
+							<span
+								className={scss.accordion_title}
+								dangerouslySetInnerHTML={{ __html: item.title }}
+							/>
 							<span className={scss.accordion_chevron}>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -42,12 +46,7 @@ export function BasicAccordion({ items }: BasicAccordionProps) {
 						</Accordion.Trigger>
 					</Accordion.Header>
 					<Accordion.Body className={scss.accordion_body}>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-						incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-						dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-						mollit anim id est laborum.
+						<HtmlContent text={item.body} />
 					</Accordion.Body>
 				</Accordion.Item>
 			))}

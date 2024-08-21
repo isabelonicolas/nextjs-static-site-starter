@@ -5,7 +5,7 @@
 .accordion {
 	display: flex;
 	flex-direction: column;
-	gap: func.rem(12);
+	gap: func.rem(16);
 }
 
 .accordion_item {
@@ -16,8 +16,8 @@
 .accordion_trigger {
 	display: flex;
 	justify-content: space-between;
-	gap: func.rem(12);
-	padding: func.rem(12);
+	gap: func.rem(16);
+	padding: func.rem(16);
 	cursor: pointer;
 }
 
@@ -28,8 +28,12 @@
 	line-height: 125%;
 }
 
+.accordion_title {
+	display: block;
+}
+
 .accordion_body {
-	padding: func.rem(12);
+	padding: func.rem(16);
 }
 
 .accordion_chevron {
