@@ -43,7 +43,6 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(func
 				ref={forwardedRef}
 				className={clsx(scss.accordion_item, className)}
 				data-state-expanded={isExpanded}
-				data-state-value={value}
 				{...props}
 			>
 				{children}
