@@ -16,11 +16,17 @@
 }
 
 .accordion_body {
-	display: none;
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 200ms;
+
+	> div {
+		overflow: hidden;
+	}
 }
 
 .accordion_item[data-state-expanded="true"] {
 	.accordion_body {
-		display: block;
+		grid-template-rows: 1fr;
 	}
 }

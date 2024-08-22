@@ -27,7 +27,7 @@ export const AccordionBody = forwardRef<HTMLDivElement, AccordionBodyProps>(func
 			aria-labelledby={ariaLabelledBy || `accordion-${itemId}`}
 			{...props}
 		>
-			{children}
+			<div>{children}</div>
 		</div>
 	)
 })

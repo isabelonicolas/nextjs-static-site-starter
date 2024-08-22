@@ -45,8 +45,8 @@ export function BasicAccordion({ items }: BasicAccordionProps) {
 							</span>
 						</Accordion.Trigger>
 					</Accordion.Header>
-					<Accordion.Body className={scss.accordion_body}>
-						<HtmlContent text={item.body} />
+					<Accordion.Body>
+						<HtmlContent className={scss.accordion_body_inner} text={item.body} />
 					</Accordion.Body>
 				</Accordion.Item>
 			))}
