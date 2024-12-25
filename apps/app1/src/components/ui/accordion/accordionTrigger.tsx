@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef, useContext } from "react"
+import { forwardRef, useContext, useEffect } from "react"
 import clsx from "clsx"
 
 import { AccordionItemContext } from "./accordionItem"
@@ -31,6 +31,10 @@ export const AccordionTrigger = forwardRef<HTMLDivElement, AccordionTriggerProps
 		forwardedRef
 	) {
 		const { isExpanded, itemId, toggleItem } = useContext(AccordionItemContext)
+
+		useEffect(() => {
+			console.log(isExpanded)
+		}, [isExpanded])
 
 		return (
 			<div

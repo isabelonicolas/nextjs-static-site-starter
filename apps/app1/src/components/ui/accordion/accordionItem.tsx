@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, forwardRef, useContext, useId } from "react"
+import { createContext, forwardRef, useCallback, useContext, useId, useMemo, useRef } from "react"
 import clsx from "clsx"
 
 import { AccordionRootContext } from "./accordionRoot"
@@ -30,12 +30,14 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(func
 	forwardedRef
 ) {
 	const itemId = useId()
-	const { itemsExpanded, toggle } = useContext(AccordionRootContext)
-	const isExpanded = itemsExpanded.includes(value)
 
-	const toggleItem = () => {
+	const { itemsExpanded, toggle } = useContext(AccordionRootContext)
+
+	const isExpanded = useMemo(() => itemsExpanded.includes(value), [itemsExpanded, value])
+
+	const toggleItem = useCallback(() => {
 		toggle(value)
-	}
+	}, [toggle, value])
 
 	return (
 		<AccordionItemContext.Provider value={{ itemId, isExpanded, toggleItem }}>

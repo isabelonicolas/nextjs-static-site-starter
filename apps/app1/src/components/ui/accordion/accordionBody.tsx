@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef, useContext } from "react"
+import { forwardRef, memo, useContext } from "react"
 import clsx from "clsx"
 
 import { AccordionItemContext } from "./accordionItem"
@@ -17,6 +17,8 @@ export const AccordionBody = forwardRef<HTMLDivElement, AccordionBodyProps>(func
 	forwardedRef
 ) {
 	const { itemId } = useContext(AccordionItemContext)
+
+	console.log("AccordionBody")
 
 	return (
 		<div

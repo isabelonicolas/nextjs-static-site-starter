@@ -16,7 +16,7 @@ export function BasicAccordion({ items }: BasicAccordionProps) {
 	}
 
 	return (
-		<Accordion.Root className={scss.accordion}>
+		<Accordion.Root className={scss.accordion} type="multiple">
 			{items.map((item, itemIndex) => (
 				<Accordion.Item
 					key={`accordion${itemIndex}`}

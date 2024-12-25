@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, forwardRef, useState } from "react"
+import { createContext, forwardRef, useCallback, useMemo, useState } from "react"
 import clsx from "clsx"
 
 import scss from "./accordion.module.scss"
@@ -27,20 +27,20 @@ export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(func
 ) {
 	const [itemsExpanded, setItemsExpanded] = useState<string[]>([])
 
-	const toggle = (value: string) => {
-		switch (type) {
-			case "single":
-				setItemsExpanded(itemsExpanded.includes(value) ? [] : [value])
-				break
-			case "multiple":
-				if (itemsExpanded.includes(value)) {
-					setItemsExpanded(itemsExpanded.filter((item) => item !== value))
-				} else {
-					setItemsExpanded([...itemsExpanded, value])
-				}
-				break
-		}
-	}
+	const toggleSingle = useCallback((value: string) => {
+		setItemsExpanded((prevState) => (prevState.includes(value) ? [] : [value]))
+	}, [])
+
+	const toggleMultiple = useCallback((value: string) => {
+		setItemsExpanded((prevState) =>
+			prevState.includes(value) ? prevState.filter((item) => item !== value) : [...prevState, value]
+		)
+	}, [])
+
+	const toggle = useMemo(
+		() => (type === "single" ? toggleSingle : toggleMultiple),
+		[type, toggleSingle, toggleMultiple]
+	)
 
 	return (
 		<AccordionRootContext.Provider value={{ itemsExpanded, toggle }}>
