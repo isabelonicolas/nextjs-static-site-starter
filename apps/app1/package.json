@@ -18,7 +18,7 @@
 		"react-dom": "^19"
 	},
 	"devDependencies": {
-    "@eslint/eslintrc": "^3",
+		"@eslint/eslintrc": "^3",
 		"@types/node": "^22",
 		"@types/react-dom": "^19",
 		"@types/react": "^19",
