@@ -1,6 +1,6 @@
 "use client"
 
-import { ComponentPropsWithoutRef, forwardRef } from "react"
+import { ComponentProps } from "react"
 import Link from "next/link"
 import clsx from "clsx"
 
@@ -8,34 +8,37 @@ import scss from "./button.module.scss"
 
 type BaseButtonType = {
 	children?: React.ReactNode
+	color?: "primary" | "dark" | "outline-dark"
 	iconPrefix?: React.ReactNode
 	iconSuffix?: React.ReactNode
-	color?: "primary" | "dark" | "outline-dark"
 }
 
-type ButtonAsAnchorType = BaseButtonType &
-	ComponentPropsWithoutRef<"a"> & {
+type ButtonAsAnchorType = ComponentProps<"a"> &
+	BaseButtonType & {
 		as: "anchor"
 	}
 
-type ButtonAsButtonType = BaseButtonType &
-	ComponentPropsWithoutRef<"button"> & {
+type ButtonAsButtonType = ComponentProps<"button"> &
+	BaseButtonType & {
 		as: "button"
 	}
 
-type ButtonAsLinkType = BaseButtonType &
-	ComponentPropsWithoutRef<"a"> & {
+type ButtonAsLinkType = ComponentProps<"a"> &
+	BaseButtonType & {
 		as: "nextlink"
 	}
 
-export type ButtonProps = ButtonAsAnchorType | ButtonAsButtonType | ButtonAsLinkType
+type ButtonProps = ButtonAsAnchorType | ButtonAsButtonType | ButtonAsLinkType
 
-type ButtonRefProps = HTMLAnchorElement | HTMLButtonElement
-
-export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
-	{ as, children, className, iconPrefix, iconSuffix, color, ...props },
-	ref
-) {
+export function Button({
+	as,
+	children,
+	className,
+	color,
+	iconPrefix,
+	iconSuffix,
+	...props
+}: ButtonProps) {
 	const btnClassName = clsx(scss.btn, className)
 
 	const buttonContent = () => {
@@ -48,46 +51,44 @@ export const Button = forwardRef<ButtonRefProps, ButtonProps>(function Button(
 		)
 	}
 
-	if (as === "anchor") {
-		const anchorProps = props as ComponentPropsWithoutRef<"a">
-		const anchorRef = ref as React.Ref<HTMLAnchorElement>
+	switch (as) {
+		case "anchor": {
+			const anchorProps = props as ComponentProps<"a">
 
-		return (
-			<a ref={anchorRef} className={btnClassName} data-state-color={color} {...anchorProps}>
-				{buttonContent()}
-			</a>
-		)
-	}
-
-	if (as === "button") {
-		const { type = "button", ...buttonProps } = props as ComponentPropsWithoutRef<"button">
-		const buttonRef = ref as React.Ref<HTMLButtonElement>
-
-		return (
-			<button
-				ref={buttonRef}
-				className={btnClassName}
-				type={type}
-				data-state-color={color}
-				{...buttonProps}
-			>
-				{buttonContent()}
-			</button>
-		)
-	}
-
-	if (as === "nextlink") {
-		const linkProps = props as ComponentPropsWithoutRef<"a">
-		const linkRef = ref as React.Ref<HTMLAnchorElement>
-
-		return (
-			<Link href={linkProps.href || ""} passHref legacyBehavior>
-				<a ref={linkRef} className={btnClassName} data-state-color={color} {...linkProps}>
+			return (
+				<a className={btnClassName} data-state-color={color} {...anchorProps}>
 					{buttonContent()}
 				</a>
-			</Link>
-		)
-	}
+			)
+		}
 
-	return null
-})
+		case "button": {
+			const { type, ...buttonProps } = props as ComponentProps<"button">
+
+			return (
+				<button
+					className={btnClassName}
+					type={type || "button"}
+					data-state-color={color}
+					{...buttonProps}
+				>
+					{buttonContent()}
+				</button>
+			)
+		}
+
+		case "nextlink": {
+			const { href, ...anchorProps } = props as ComponentProps<"a">
+
+			return (
+				<Link href={href || ""} className={btnClassName} data-state-color={color} {...anchorProps}>
+					{buttonContent()}
+				</Link>
+			)
+		}
+
+		default: {
+			return null
+		}
+	}
+}

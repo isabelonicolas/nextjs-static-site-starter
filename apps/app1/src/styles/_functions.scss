@@ -22,3 +22,22 @@
 @function rem($pixels) {
 	@return #{math.div(stripUnit($pixels), stripUnit(var.$root-font-size))}rem;
 }
+
+/**
+ * @function vw
+ * @description Converts a pixel value to a `vw` (viewport width) unit relative to a given design width.
+ * 
+ * @param {Length} $pixels - The pixel value to be converted.
+ * @return {String} The corresponding `vw` value.
+ */
+@function vw($pixels, $width) {
+	@if (stripUnit($pixels)) {
+		$pixels: $pixels * 1px;
+	}
+
+	@if (stripUnit($width)) {
+		$width: $width * 1px;
+	}
+
+	@return math.div($pixels, (math.div($width, 100))) * 1vw;
+}

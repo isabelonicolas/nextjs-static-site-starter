@@ -7,7 +7,7 @@
 @mixin screen($breakpoint) {
 	@each $breakpoints, $size in var.$screen {
 		@if $breakpoint == $breakpoints {
-			@media screen and (min-width: $size) {
+			@media screen and (min-width: func.rem($size)) {
 				@content;
 			}
 		}
